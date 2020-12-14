@@ -25,7 +25,7 @@ SECRET_KEY = 'iema4$=s#%c-rw=0*-@p_e9lf)3f_ts1@i%$uf@+w9m9g3mwg&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'asilbek2585.pythonanywhere.com']
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
