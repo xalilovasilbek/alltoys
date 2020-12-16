@@ -5,7 +5,17 @@
     <title>AllToys - dashboard</title>
 </head>
 <body>
-{{ user }}
-{{ toy }}
+<div>
+    {{ welcome_text }}
+</div>
+<div>
+    <table>
+        <tr>
+            <td style="width: 100px"><a href="{% url 'toys:toys' %}">Toys</a></td>
+            <td style="width: 100px"><a href="#">Users</a></td>
+        </tr>
+    </table>
+    <hr>
+</div>
 </body>
 </html>

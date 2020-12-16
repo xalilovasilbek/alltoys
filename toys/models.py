@@ -12,9 +12,6 @@ class Address(models.Model):
     zip_code = models.CharField(max_length=100, null=True, blank=True)
     country = models.CharField(max_length=100, null=True, blank=True)
 
-    def __str__(self):
-        return self.street if self.street else ''
-
 
 class User(models.Model):
     is_active = models.BooleanField(default=True)
@@ -27,16 +24,10 @@ class User(models.Model):
     active_objects = ActiveObjectsManager()
     address = models.OneToOneField(Address, on_delete=models.PROTECT, null=True, blank=True)
 
-    def __str__(self):
-        return self.first_name
-
 
 class Tag(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(null=True, blank=True)
-
-    def __str__(self):
-        return self.name
 
 
 class Toy(models.Model):
@@ -46,6 +37,3 @@ class Toy(models.Model):
     tags = models.ManyToManyField(Tag, related_name='toys')
     created_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return self.name
