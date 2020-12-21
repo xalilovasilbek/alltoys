@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AllToys - Toy detail</title>
+</head>
+<body>
+<div>
+    All Toys
+</div>
+<div>
+    <table>
+        <tr>
+            <td style="width: 100px"><a href="{% url 'toys:toys' %}">Toys</a></td>
+            <td style="width: 100px"><a href="#">Users</a></td>
+        </tr>
+    </table>
+    <hr>
+    <div>
+        {{ toy.name }}
+    </div>
+
+</div>
+</body>
+</html>

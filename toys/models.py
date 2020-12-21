@@ -19,6 +19,9 @@ class Address(models.Model):
     zip_code = models.CharField(max_length=100, null=True, blank=True)
     country = models.CharField(max_length=100, null=True, blank=True)
 
+    def __str__(self):
+        return self.street
+
 
 class User(BaseModel):
     first_name = models.CharField(max_length=50)
@@ -29,6 +32,9 @@ class User(BaseModel):
     objects = models.Manager()
     active_objects = ActiveObjectsManager()
     address = models.OneToOneField(Address, on_delete=models.PROTECT, null=True, blank=True)
+
+    def __str__(self):
+        return self.first_name
 
 
 class Tag(BaseModel):
@@ -41,8 +47,30 @@ class Toy(BaseModel):
     user = models.ForeignKey(User, related_name='toys', on_delete=models.CASCADE, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
     tags = models.ManyToManyField(Tag, related_name='toys')
+    price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.name
+
+
+class Company(models.Model):
+    company_name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.company_name
+
+
+class Employee(models.Model):
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    email = models.EmailField(max_length=100)
+    phone = models.CharField(max_length=100)
+    age = models.IntegerField()
+    salary = models.DecimalField(max_digits=10, decimal_places=2)
+    address = models.ForeignKey(Address, on_delete=models.PROTECT)
+    company = models.ForeignKey(Company, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.first_name + ' ' + self.last_name
