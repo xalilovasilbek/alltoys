@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Markets - dashboard</title>
+</head>
+<body>
+<div>
+    All Markets
+</div>
+<div>
+    <table>
+        {% for market in object_list %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td><a href="{% url 'markets:market_detail' market.id %}">{{ market.name }}</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+    <hr>
+</div>
+</body>
+</html>
