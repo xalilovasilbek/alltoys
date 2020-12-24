@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'debug_toolbar',
     'toys',
+    'markets',
 ]
 
 MIDDLEWARE = [
@@ -80,8 +81,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'all_toys',
-        'USER': 'postgres',
-        'PASSWORD': 'Asi$2001$0209',
+        'USER': 'all_toys',
+        'PASSWORD': 'all_toys',
     }
 }
 

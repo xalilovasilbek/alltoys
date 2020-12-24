@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from toys.models import Toy, Tag, User, Company, Employee
+from toys.models import Toy, Tag, User, Company, Employee, Address
 
 
 @admin.register(Employee)
@@ -21,3 +21,4 @@ class CompanyAdmin(admin.ModelAdmin):
 admin.site.register(Toy)
 admin.site.register(Tag)
 admin.site.register(User)
+admin.site.register(Address)

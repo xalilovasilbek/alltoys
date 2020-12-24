@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class ActiveObjectsManager(models.Manager):
@@ -53,6 +54,9 @@ class Toy(BaseModel):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('toys:toy_detail', args=(self.id,))
 
 
 class Company(models.Model):

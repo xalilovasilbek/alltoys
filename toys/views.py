@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.utils import timezone
+from django.views.generic import ListView, DetailView, CreateView
 from django.views.generic.base import View, TemplateView
 
 from toys.models import Toy
@@ -24,15 +25,23 @@ class DashboardView(TemplateView):
 #         return render(request, template_name='toys/dashboard.html', context={'welcome_text': 'Welcome to AllToys!'})
 
 
-def get_toys(request):
-    toys = Toy.objects.all()
-    toys = toys.filter(created_at__year=timezone.now().year)
-    return render(request, template_name='toys/toys.html', context={'toys': toys})
+class ToysListView(ListView):
+    model = Toy
+    template_name = 'toys/toys.html'
+    queryset = Toy.objects.filter()
+
+    def get_queryset(self):
+        toys = Toy.objects.filter(created_at__year=timezone.now().year)
+        return toys
 
 
-def get_toy_detail(request, **kwargs):
-    try:
-        toy = Toy.objects.get(pk=kwargs.get('id'))
-    except Toy.DoesNotExist:
-        return redirect('toys:toys')
-    return render(request, 'toys/toy_detail.html', context={'toy': toy})
+class ToyDetailView(DetailView):
+    model = Toy
+    template_name = 'toys/toy_detail.html'
+
+
+class ToyCreateView(CreateView):
+    model = Toy
+    template_name = 'toys/toy_form.html'
+    fields = ['name', 'description', 'price']
+

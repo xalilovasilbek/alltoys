@@ -23,5 +23,6 @@ urlpatterns = [
     path('dashboard/', RedirectView.as_view(url='/')),  # Bunda RedirectView methodi bir
     # nechta urlga bitta sahifani berishga yordam beradi
     path('admin/', admin.site.urls),
-    path('__debug__/', include(debug_toolbar.urls))
+    path('__debug__/', include(debug_toolbar.urls)),
+    path('', include('markets.api.urls')),
 ]
