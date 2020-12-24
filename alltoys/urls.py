@@ -24,5 +24,5 @@ urlpatterns = [
     # nechta urlga bitta sahifani berishga yordam beradi
     path('admin/', admin.site.urls),
     path('__debug__/', include(debug_toolbar.urls)),
-    path('', include('markets.api.urls')),
+    path('api-markets/', include('markets.api.urls')),
 ]
