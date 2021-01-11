@@ -1,3 +1,4 @@
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.urls import reverse
 
@@ -20,27 +21,29 @@ class Address(models.Model):
     zip_code = models.CharField(max_length=100, null=True, blank=True)
     country = models.CharField(max_length=100, null=True, blank=True)
 
-    def __str__(self):
-        return self.street
+    class Meta:
+        verbose_name_plural = 'Address'
 
 
-class User(BaseModel):
+class User(AbstractUser, BaseModel):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50, null=True, blank=True)
     email = models.EmailField(max_length=100, null=True, blank=True)
     phone = models.CharField(max_length=100, null=True, blank=True)
     age = models.IntegerField(null=True, blank=True)
-    objects = models.Manager()
-    active_objects = ActiveObjectsManager()
     address = models.OneToOneField(Address, on_delete=models.PROTECT, null=True, blank=True)
 
-    def __str__(self):
-        return self.first_name
+    class Meta:
+        db_table = 'user'
+        verbose_name_plural = 'Users'
 
 
-class Tag(BaseModel):
+class Tag(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(null=True, blank=True)
+
+    def __str__(self):
+        return self.name
 
 
 class Toy(BaseModel):

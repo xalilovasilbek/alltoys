@@ -3,7 +3,7 @@ from django.utils import timezone
 from django.views.generic import ListView, DetailView, CreateView
 from django.views.generic.base import View, TemplateView
 
-from toys.models import Toy
+from toys.models import Toy, User
 
 
 class DashboardView(TemplateView):
@@ -45,3 +45,7 @@ class ToyCreateView(CreateView):
     template_name = 'toys/toy_form.html'
     fields = ['name', 'description', 'price']
 
+
+def show_users(request):
+    users = User.objects.all()
+    return render(request, 'toys/show_users.html', context={'users_list': users})
