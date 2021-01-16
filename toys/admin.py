@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect
 from django.utils.html import format_html
 from django.utils.translation import ugettext_lazy as _
 
+from toys.forms.admin.user_admin import UserAdminForm
 from toys.models import Toy, Tag, User, Company, Employee, Address
 from toys.services.send_weekly_report import send_weekly_toys_count, send_month_employees_salary
 
@@ -64,28 +65,12 @@ def send_weekly_email_report(modeladmin, request, queryset):
     return HttpResponseRedirect(request.get_full_path())
 
 
-def send_month_email_report(modeladmin, request, queryset):
-    if queryset.count() != 1:
-        modeladmin.message_user(request, 'Multiple user selected, please choose one and only one.',
-                                messages.ERROR)
-        return HttpResponseRedirect(request.get_full_path())
-    company = queryset.first()
-    company_name = queryset.first()
-    if not company.company_email:
-        modeladmin.message_user(request, 'Selected company does not have email address',
-                                messages.ERROR)
-        return HttpResponseRedirect(request.get_full_path())
-    send_month_employees_salary(company, company_name)
-    modeladmin.message_user(request, 'Weekly report sent to user email: %s' % company.company_email, messages.INFO)
-
-    return HttpResponseRedirect(request.get_full_path())
-
-
 @admin.register(User)
 class UserAdmin(UserAdmin):
     list_display = ['username', 'first_name', 'last_name', 'email', 'phone', 'password_change_link']
     empty_value_display = '-'
     readonly_fields = ('password_change_link',)
+    form = UserAdminForm
     fieldsets = (
         (None, {'fields': ('username', 'password', 'password_change_link')}),
         (_('Personal info'), {'fields': ('first_name', 'last_name', 'email')}),
