@@ -1,28 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Welcome to Employee list</title>
-</head>
-<table class="table table-borderless">
-    <thead class="border-bottom font-weight-bold">
-    <tr>
-        <td>First name</td>
-        <td>Last name</td>
-        <td>Phone number</td>
-        <td>Email</td>
-    </tr>
-    </thead>
-    <tbody>
-    {% for employee in employee_list %}
+{% extends 'toys/layout.html' %}
+{% block page_title %}
+    Welcome to Employee list
+{% endblock %}
+{% block page_header %}
+    Welcome to Employee list
+    <hr>
+{% endblock %}
+{% block page_navbar %}
+    <table class="table table-borderless">
+        <thead class="border-bottom font-weight-bold">
         <tr>
-            <td>{{ employee.first_name }}</td>
-            <td>{{ employee.last_name }}</td>
-            <td>{{ employee.phone }}</td>
-            <td>{{ employee.email }}</td>
-            <td><a href="{% url 'toys:employee-edit' pk=employee.pk %}">Edit</a></td>
+            <td>First name</td>
+            <td>Last name</td>
+            <td>Phone number</td>
+            <td>Email</td>
         </tr>
-    {% endfor %}
-    </tbody>
-</table>
-</html>
+        </thead>
+        <tbody>
+        {% for employee in employee_list %}
+            <tr>
+                <td>{{ employee.first_name }}</td>
+                <td>{{ employee.last_name }}</td>
+                <td>{{ employee.phone }}</td>
+                <td>{{ employee.email }}</td>
+                <td><a href="{% url 'toys:employee-edit' pk=employee.pk %}">Edit</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+{% block page_content %}
+{% endblock %}

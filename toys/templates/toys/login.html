@@ -1,17 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>AllToys - dashboard</title>
-</head>
-<body>
-<h3>Sign in</h3>
-<form method="post">
-    {% csrf_token %}
-    {{ form.username }}
-    {{ form.password }}
-    {{ form.non_field_errors }}
-    <button type="submit" class="btn btn-primary">Login</button>
-</form>
-</body>
-</html>
+{% extends 'toys/layout.html' %}
+{% block page_title %}
+    Login to All Toys
+{% endblock %}
+{% block page_header %}
+{% endblock %}
+{% block page_navbar %}
+{% endblock %}
+
+{% block page_content %}
+    <h3>Sign in</h3>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.username }}
+        {{ form.password }}
+        {{ form.non_field_errors }}
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+{% endblock %}
+
