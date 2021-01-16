@@ -1,0 +1,9 @@
+{% for employee in employee_list %}
+    <tr>
+        <td>{{ employee.first_name }}</td>
+        <td>{{ employee.last_name }}</td>
+        <td>{{ employee.phone }}</td>
+        <td>{{ employee.email }}</td>
+        <td><a href="{% url 'toys:employee-edit' pk=employee.pk %}">Edit</a></td>
+    </tr>
+{% endfor %}

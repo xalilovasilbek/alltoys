@@ -1,3 +1,4 @@
+{% load any %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +21,7 @@
         {% for toy in object_list %}
             <tr>
                 <td>{{ forloop.counter }}</td>
-{#                <td>{{ toy.id }}</td>#}
+                {#                <td>{{ toy.id }}</td>#}
                 <td><a href="{% url 'toys:toy_detail' toy.id %}">{{ toy.name }}</a></td>
                 <td>{{ toy.user.email }}</td>
                 <td>
@@ -32,6 +33,9 @@
         {% endfor %}
     </table>
     <hr>
+    <table>
+        {% render_toy_list object_list %}
+    </table>
 </div>
 </body>
 </html>
