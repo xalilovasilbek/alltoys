@@ -124,3 +124,4 @@ STATIC_URL = '/static/'
 INTERNAL_IPS = [
     '127.0.0.1',
 ]
+AUTHENTICATION_BACKENDS = ['toys.backend.email_backend.EmailBackend', ]

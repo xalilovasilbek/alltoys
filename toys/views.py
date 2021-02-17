@@ -3,11 +3,10 @@ from django.shortcuts import redirect, resolve_url
 from django.utils import timezone
 from django.views.generic import ListView, DetailView
 from django.views.generic.base import View, TemplateView
-
 from toys.forms.employee_add import EmployeeModelForm
 from toys.forms.sign_up import SignUpForm
 from toys.forms.toy import ToyModelForm
-from toys.forms.user import LoginForm
+from toys.forms.login import LoginForm
 from toys.models import Toy, User, Employee
 from django.shortcuts import render
 from django.contrib.auth import login, authenticate
@@ -72,14 +71,14 @@ class LoginView(View):
     template_name = 'toys/login.html'
 
     def get(self, request):
-        # if request.user.is_authenticated:
-        #     return redirect('toys:dashboard')
         form = LoginForm()
         return render(request, self.template_name, {'form': form})
 
     def post(self, request):
         form = LoginForm(data=request.POST)
         if form.is_valid():
+            # username = form.cleaned_data.get('username')
+            # password = form.cleaned_data.get('password')
             user = form.get_user()
             login(request, user)
 
